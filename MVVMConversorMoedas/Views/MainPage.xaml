@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MVVMConversorMoedas.MainPage">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="14">
+            <Label Text="Coins Converter" FontSize="24"
+                   FontAttributes="Bold"/>
+
+            <Entry Placeholder="Value" Keyboard="Numeric"
+                   Text="{Binding AmountText, Mode=TwoWay}"/>
+            <!--bidimensional binding, do the entry and exit from the text-->
+            <Grid ColumnDefinitions="* ,Auto, *"
+            ColumnSpacing="8">
+                <Picker Grid.Column="0"
+                            Title="From"
+                            ItemsSource="{Binding Currencies}" 
+                            SelectedItem="{Binding From,
+                                Mode=TwoWay}"/>
+                <Button Grid.Column="1" Text="Inverter"
+                        Command="{Binding SwapCommand}"/>
+                <Picker Grid.Column="2"
+                        Title="To"
+                         ItemsSource="{Binding Currencies}" 
+                        SelectedItem="{Binding To, Mode=TwoWay}"/>
+            </Grid>
+            <Button Text="Convert" Command="{Binding
+                ConvertCommand}"/>
+            <Button Text="Clear" Command="{Binding
+                ClearCommand}"/>
+            <Button Text="Swap" Command="{Binding
+                     SwapCommand}"/>
+            <Frame Padding="16" HasShadow="False">
+                <Label Text="{Binding Result}" FontSize="18"
+                       FontAttributes="Bold" HorizontalOptions="Center"/>
+            </Frame>
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
